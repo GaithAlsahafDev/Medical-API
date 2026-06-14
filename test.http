@@ -1,0 +1,9 @@
+POST http://localhost:5186/api/patients
+Content-Type: application/json
+
+{
+  "name": "أحمد علي",
+  "info": "يعاني من ألم في المفاصل",
+  "medications": "بانادول 500 ملغ",
+  "procedure": "فحص طبي عام"
+}
