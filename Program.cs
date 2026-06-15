@@ -34,11 +34,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // 2. تفعيل وإضافة سياسة الـ CORS
+// 2. تفعيل وإضافة سياسة الـ CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(
+                "http://localhost:5173", 
+                "https://medical-frontend-aamw.onrender.com" // أضفنا رابط موقعك الجديد هنا
+              )
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
