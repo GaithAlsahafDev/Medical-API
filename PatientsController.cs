@@ -54,4 +54,20 @@ public class PatientsController : ControllerBase
 
         return CreatedAtAction(nameof(GetPatients), new { id = patient.Id }, patient);
     }
+
+    [HttpDelete("{id}")]
+[Authorize(Roles = "Admin")] // فقط الأدمن لديه صلاحية الحذف
+public async Task<IActionResult> DeletePatient(int id)
+{
+    var patient = await _context.Patients.FindAsync(id);
+    if (patient == null)
+    {
+        return NotFound("المريض غير موجود.");
+    }
+
+    _context.Patients.Remove(patient);
+    await _context.SaveChangesAsync();
+
+    return Ok("تم حذف المريض بنجاح.");
+}
 }
